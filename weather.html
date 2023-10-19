@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Widgets</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #1ED760; /* Spotify's green color */
+            margin: 20px 0; /* Vertical spacing between the widgets */
+            display: block; /* Ensure each widget takes up full width */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- First Widget: TELFORD WEATHER -->
+        <a class="weatherwidget-io" href="https://forecast7.com/en/52d68n2d45/telford/" data-label_1="TELFORD" data-label_2="WEATHER" data-theme="original" >TELFORD WEATHER</a>
+
+        <!-- Second Widget: LA MARINA DEL PINET WEATHER -->
+        <a class="weatherwidget-io" href="https://forecast7.com/en/38d16n0d64/la-marina-del-pinet/" data-label_1="LA MARINA DEL PINET" data-label_2="WEATHER" data-theme="original" >LA MARINA DEL PINET WEATHER</a>
+
+        <!-- Third Widget: Snowdonia mountain weather -->
+        <a class="metoffice-mountain-forecast" href="https://www.metoffice.gov.uk/weather/specialist-forecasts/mountain/snowdonia" data-theme="_theme_">Snowdonia mountain weather on Met Office</a>
+    </div>
+
+    <!-- Scripts for the widgets -->
+    <script>
+        !function(d,s,id){
+            var js,fjs=d.getElementsByTagName(s)[0];
+            if(!d.getElementById(id)){
+                js=d.createElement(s);
+                js.id=id;
+                js.src='https://weatherwidget.io/js/widget.min.js';
+                fjs.parentNode.insertBefore(js,fjs);
+            }
+        }(document,'script','weatherwidget-io-js');
+    </script>
+    <script async src="https://www.metoffice.gov.uk/public/pws/components/mountain/loader.js"></script>
+</body>
+
+</html>

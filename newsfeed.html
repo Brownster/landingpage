@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit News Feed</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+
+        .feed-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+        .feed-item:last-child {
+            border-bottom: none;
+        }
+
+        a {
+            color: #1ED760;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Reddit News Feed</h1>
+        <div id="feed"></div>
+    </div>
+
+    <script>
+        async function loadRSSFeed() {
+            const feedURL = "https://beta.reddit.com/r/therewasanattempt.rss";
+            const response = await fetch(feedURL);
+            const xmlText = await response.text();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+            const items = xmlDoc.querySelectorAll("item");
+
+            let html = '';
+            items.forEach(item => {
+                const title = item.querySelector("title").textContent;
+                const link = item.querySelector("link").textContent;
+                html += `<div class="feed-item">
+                            <a href="${link}" target="_blank">${title}</a>
+                         </div>`;
+            });
+
+            document.getElementById("feed").innerHTML = html;
+        }
+
+        loadRSSFeed();
+    </script>
+</body>
+
+</html>
